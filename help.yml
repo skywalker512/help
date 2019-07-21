@@ -337,6 +337,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
+              examples:
+                "新生":
+                  value:
+                    id: 0
+                    stuNum: 0
+                    name: string
+                    gender: 男
+                    avatar: string
+                    role: 新生
+                    createdAt: '2019-07-21T06:33:23.243Z'
+                    updatedAt: '2019-07-21T06:33:23.243Z'
+                    questionsNum: 0
+                    answersNum: 0
+                "志愿者":
+                   value:
+                    id: 0
+                    stuNum: 0
+                    name: string
+                    gender: 男
+                    avatar: string
+                    role: 志愿者
+                    createdAt: '2019-07-21T06:33:23.243Z'
+                    updatedAt: '2019-07-21T06:33:23.243Z'
+                    approvalNum: 0
+                    opposeNum: 0
   "/user/questions":
     get:
       tags: 
