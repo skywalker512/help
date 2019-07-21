@@ -16,6 +16,7 @@ tags:
   - name: 用户
   - name: 搜索
   - name: 回答
+  - name: 标签
 paths:
   "/questions":
     post:
@@ -313,6 +314,22 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Tag"
+  "/tags/hot":
+    get:
+      tags:
+        - 标签
+      summary: 返回热门标签
+      parameters: 
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        "200":
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
   "/user":
     get:
       tags:
@@ -519,6 +536,7 @@ components:
       name: limit
       in: query
       required: false
+      description: 限制返回数量 默认 10
       schema:
         type: integer
   responses:
