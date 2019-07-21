@@ -342,6 +342,27 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
+  "/user/questions":
+    get:
+      tags: 
+        - 用户
+      summary: 获取当前用户的问题
+      parameters:
+        - $ref: "#/components/parameters/SortBy"
+        - $ref: "#/components/parameters/Order"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PrePage"
+      responses:
+        "200":
+          description: 成功获取
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Question"
+              example:
+                - $ref: "#/components/examples/QuestionWithOutAnswer"
 components:
   schemas:
     Answer:
