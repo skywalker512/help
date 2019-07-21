@@ -448,6 +448,9 @@ components:
           type: integer
           description: 学号（好像 signed int32 是到 2147483647 应该用 int64吧？）
           format: int64
+        name:
+          type: string
+          description: 从微信接口拿到用户名
         gender:
           type: string
           description: 性别
@@ -648,13 +651,14 @@ components:
         author:
           id: 0
           stuNum: 0
+          name: string
           gender: 男
           avatar: string
           role: 新生
           createdAt: "2019-07-21T02:05:28.742Z"
           updatedAt: "2019-07-21T02:05:28.742Z"
-        status: 已解决
-        answersCount: 0
+          answersCount: 0
+          status: "已解决"
         createdAt: "2019-07-21T02:05:28.742Z"
         updatedAt: "2019-07-21T02:05:28.742Z"
   securitySchemes:
