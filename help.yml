@@ -7,7 +7,7 @@ info:
     email: 2018210022@stu.cqupt.edu.cn
   license:
     name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
   version: 1.0.0
 servers:
   - url: /
@@ -17,7 +17,7 @@ tags:
   - name: 搜索
   - name: 回答
 paths:
-  '/questions':
+  "/questions":
     post:
       tags:
         - 问题
@@ -27,8 +27,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Question'
-            example: 
+              $ref: "#/components/schemas/Question"
+            example:
               content: string
               photoUrls:
                 - string
@@ -37,143 +37,143 @@ paths:
         required: true
       responses:
         400:
-          $ref: '#/components/responses/400InvalidRequset'
+          $ref: "#/components/responses/400InvalidRequset"
         201:
-          $ref: '#/components/responses/201Created'
+          $ref: "#/components/responses/201Created"
         401:
-          $ref: '#/components/responses/401Unauthorized'
+          $ref: "#/components/responses/401Unauthorized"
         403:
-          $ref: '#/components/responses/403Forbidden'
+          $ref: "#/components/responses/403Forbidden"
         422:
-          $ref: '#/components/responses/422UnprocesableEntity'
+          $ref: "#/components/responses/422UnprocesableEntity"
       security:
         - redRockAuth:
-            - 'write:questions'
-            - 'read:questions'
+            - "write:questions"
+            - "read:questions"
     get:
-      tags: 
+      tags:
         - 问题
       summary: 返回所有问题
-      parameters: 
-        - $ref: '#/components/parameters/SortBy'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/Page'
-        - $ref: '#/components/parameters/PrePage'
+      parameters:
+        - $ref: "#/components/parameters/SortBy"
+        - $ref: "#/components/parameters/Order"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PrePage"
       responses:
-        '200':
+        "200":
           description: 成功获取
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Question'
-              example: 
-                - $ref: '#/components/examples/QuestionWithOutAnswer'
-  '/questions/tag/{tagId}':
+                  $ref: "#/components/schemas/Question"
+              example:
+                - $ref: "#/components/examples/QuestionWithOutAnswer"
+  "/questions/tag/{tagId}":
     get:
       tags:
         - 问题
       summary: 通过标签找问题
       operationId: findPetsByTags
       parameters:
-        - $ref: '#/components/parameters/TagId'
-        - $ref: '#/components/parameters/SortBy'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/Page'
-        - $ref: '#/components/parameters/PrePage'
+        - $ref: "#/components/parameters/TagId"
+        - $ref: "#/components/parameters/SortBy"
+        - $ref: "#/components/parameters/Order"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PrePage"
       responses:
-        '200':
+        "200":
           description: 成功获取
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Question'
-              example: 
-                - $ref: '#/components/examples/QuestionWithOutAnswer'
+                  $ref: "#/components/schemas/Question"
+              example:
+                - $ref: "#/components/examples/QuestionWithOutAnswer"
         404:
-          $ref: '#/components/responses/404NotFound'
+          $ref: "#/components/responses/404NotFound"
         410:
-          $ref: '#/components/responses/410Gone'
-  '/questions/{questionId}':
+          $ref: "#/components/responses/410Gone"
+  "/questions/{questionId}":
     get:
       tags:
         - 问题
       summary: 通过 id 找问题
       description: 返回单个问题
       parameters:
-        - $ref: '#/components/parameters/QuestionId'
-        - $ref: '#/components/parameters/SortBy'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/Page'
-        - $ref: '#/components/parameters/PrePage'
+        - $ref: "#/components/parameters/QuestionId"
+        - $ref: "#/components/parameters/SortBy"
+        - $ref: "#/components/parameters/Order"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PrePage"
       responses:
-        '200':
+        "200":
           description: 请求成功
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Question'
+                $ref: "#/components/schemas/Question"
         404:
-          $ref: '#/components/responses/404NotFound'
+          $ref: "#/components/responses/404NotFound"
         410:
-          $ref: '#/components/responses/410Gone'
+          $ref: "#/components/responses/410Gone"
     patch:
       tags:
         - 问题
       summary: 更新问题（部分）
       parameters:
-        - $ref: '#/components/parameters/QuestionId'
+        - $ref: "#/components/parameters/QuestionId"
       requestBody:
         content:
           application/json:
-              schema:
-                  $ref: '#/components/schemas/Question'
-              examples:
-                '问题解决':
-                  value:
-                    status: '已解决'
+            schema:
+              $ref: "#/components/schemas/Question"
+            examples:
+              "问题解决":
+                value:
+                  status: "已解决"
       responses:
         400:
-          $ref: '#/components/responses/400InvalidRequset'
+          $ref: "#/components/responses/400InvalidRequset"
         201:
-          $ref: '#/components/responses/201Created'
+          $ref: "#/components/responses/201Created"
         401:
-          $ref: '#/components/responses/401Unauthorized'
+          $ref: "#/components/responses/401Unauthorized"
         403:
-          $ref: '#/components/responses/403Forbidden'
+          $ref: "#/components/responses/403Forbidden"
         422:
-          $ref: '#/components/responses/422UnprocesableEntity'
+          $ref: "#/components/responses/422UnprocesableEntity"
       security:
         - redRockAuth:
-            - 'write:questions'
-            - 'read:questions'
+            - "write:questions"
+            - "read:questions"
     delete:
       tags:
         - 问题
       summary: 删除一个问题
       parameters:
-        - $ref: '#/components/parameters/QuestionId'
+        - $ref: "#/components/parameters/QuestionId"
       responses:
         401:
-          $ref: '#/components/responses/401Unauthorized'
+          $ref: "#/components/responses/401Unauthorized"
         403:
-          $ref: '#/components/responses/403Forbidden'
+          $ref: "#/components/responses/403Forbidden"
         204:
-          $ref: '#/components/responses/204NoContent'
+          $ref: "#/components/responses/204NoContent"
       security:
         - redRockAuth:
-            - 'write:questions'
-            - 'read:questions'
-  '/questions/{questionId}/image':
+            - "write:questions"
+            - "read:questions"
+  "/questions/{questionId}/image":
     post:
       tags:
         - 问题
       summary: 上传一个图片到问题
       parameters:
-        - $ref: '#/components/parameters/QuestionId'
+        - $ref: "#/components/parameters/QuestionId"
       requestBody:
         description: base64 编码图片
         content:
@@ -183,146 +183,146 @@ paths:
               properties:
                 base64:
                   type: string
-            example: 
+            example:
               base64: string
         required: true
       responses:
-        '200':
+        "200":
           description: 成功信息
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: "#/components/schemas/ApiResponse"
       security:
         - redRockAuth:
-            - 'write:questions'
-            - 'read:questions'
-  '/questions/{questionId}/answer':
+            - "write:questions"
+            - "read:questions"
+  "/questions/{questionId}/answer":
     post:
       tags:
         - 回答
       summary: 发表一个回答
       parameters:
-        - $ref: '#/components/parameters/QuestionId'
+        - $ref: "#/components/parameters/QuestionId"
       requestBody:
         description: 回答的内容
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Answer'
+              $ref: "#/components/schemas/Answer"
             example:
               content: string
               photoUrls:
                 - string
       responses:
         400:
-          $ref: '#/components/responses/400InvalidRequset'
+          $ref: "#/components/responses/400InvalidRequset"
         201:
-          $ref: '#/components/responses/201Created'
+          $ref: "#/components/responses/201Created"
         401:
-          $ref: '#/components/responses/401Unauthorized'
+          $ref: "#/components/responses/401Unauthorized"
         403:
-          $ref: '#/components/responses/403Forbidden'
+          $ref: "#/components/responses/403Forbidden"
         422:
-          $ref: '#/components/responses/422UnprocesableEntity'
+          $ref: "#/components/responses/422UnprocesableEntity"
       security:
         - redRockAuth:
-            - 'read:answers'
-            - 'write:answers'
-  '/answers/{answerId}':
+            - "read:answers"
+            - "write:answers"
+  "/answers/{answerId}":
     delete:
       tags:
         - 回答
       summary: 删除一个回答
       parameters:
-        - $ref: '#/components/parameters/answerId'
+        - $ref: "#/components/parameters/answerId"
       responses:
         401:
-          $ref: '#/components/responses/401Unauthorized'
+          $ref: "#/components/responses/401Unauthorized"
         403:
-          $ref: '#/components/responses/403Forbidden'
+          $ref: "#/components/responses/403Forbidden"
         204:
-          $ref: '#/components/responses/204NoContent'
+          $ref: "#/components/responses/204NoContent"
       security:
         - redRockAuth:
-            - 'write:answers'
-            - 'read:answers'
-  '/answers/{answerId}/approval':
+            - "write:answers"
+            - "read:answers"
+  "/answers/{answerId}/approval":
     post:
       tags:
         - 回答
       summary: 赞同/取消赞同一个回答
       parameters:
-        - $ref: '#/components/parameters/answerId'
+        - $ref: "#/components/parameters/answerId"
       responses:
-        '200':
+        "200":
           description: 成功信息
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
-  '/answers/{answerId}/oppose':
+                $ref: "#/components/schemas/ApiResponse"
+  "/answers/{answerId}/oppose":
     post:
-        tags:
-          - 回答
-        summary: 反对/取消反对一个回答
-        parameters:
-        - $ref: '#/components/parameters/answerId'
-        responses:
-          '200':
-            description: 成功信息
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ApiResponse'
-  '/search/questions':
+      tags:
+        - 回答
+      summary: 反对/取消反对一个回答
+      parameters:
+        - $ref: "#/components/parameters/answerId"
+      responses:
+        "200":
+          description: 成功信息
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+  "/search/questions":
     get:
       tags:
         - 搜索
       summary: 搜索问题
       parameters:
-        - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/SortBy'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/Page'
-        - $ref: '#/components/parameters/PrePage'
+        - $ref: "#/components/parameters/Search"
+        - $ref: "#/components/parameters/SortBy"
+        - $ref: "#/components/parameters/Order"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PrePage"
       responses:
-        '200':
+        "200":
           description: 成功获取
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Question'
-                example: 
-                - $ref: '#/components/examples/QuestionWithOutAnswer'
-  '/search/hot':
+                  $ref: "#/components/schemas/Question"
+                example:
+                  - $ref: "#/components/examples/QuestionWithOutAnswer"
+  "/search/hot":
     get:
       tags:
         - 搜索
       summary: 最热搜索节点信息
       responses:
-        '200':
+        "200":
           description: 成功获取
           content:
             application/json:
-              schema: 
+              schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Tag'
-  '/user':
+                  $ref: "#/components/schemas/Tag"
+  "/user":
     get:
       tags:
         - 用户
       summary: 获取当前用户信息
       responses:
-        '200':
+        "200":
           description: 成功获取
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
 components:
   schemas:
     Answer:
@@ -340,8 +340,8 @@ components:
             type: string
             description: 图片链接
         author:
-          $ref: '#/components/schemas/User'
-        approvalNum: 
+          $ref: "#/components/schemas/User"
+        approvalNum:
           type: integer
         opposeNum:
           type: integer
@@ -420,13 +420,13 @@ components:
         tags:
           type: array
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: "#/components/schemas/Tag"
         answer:
           type: array
           items:
-            $ref: '#/components/schemas/Answer'
+            $ref: "#/components/schemas/Answer"
         author:
-          $ref: '#/components/schemas/User'
+          $ref: "#/components/schemas/User"
         answersCount:
           type: integer
         status:
@@ -540,28 +540,28 @@ components:
         tags:
           - id: 0
             name: string
-            createdAt: '2019-07-21T02:05:28.742Z'
-            updatedAt: '2019-07-21T02:05:28.742Z'
+            createdAt: "2019-07-21T02:05:28.742Z"
+            updatedAt: "2019-07-21T02:05:28.742Z"
         author:
           id: 0
           stuNum: 0
           gender: 男
           avatar: string
           role: 新生
-          createdAt: '2019-07-21T02:05:28.742Z'
-          updatedAt: '2019-07-21T02:05:28.742Z'
+          createdAt: "2019-07-21T02:05:28.742Z"
+          updatedAt: "2019-07-21T02:05:28.742Z"
         status: 已解决
         answersCount: 0
-        createdAt: '2019-07-21T02:05:28.742Z'
-        updatedAt: '2019-07-21T02:05:28.742Z'
+        createdAt: "2019-07-21T02:05:28.742Z"
+        updatedAt: "2019-07-21T02:05:28.742Z"
   securitySchemes:
     redRockAuth:
       type: oauth2
       flows:
         implicit:
-          authorizationUrl: 'http://XXXX.com'
+          authorizationUrl: "http://XXXX.com"
           scopes:
-            'write:questions': 修改你的问题
-            'read:questions': 读取你的问题
-            'read:answers': 读取你的回答
-            'write:answers': 修改你的回答
+            "write:questions": 修改你的问题
+            "read:questions": 读取你的问题
+            "read:answers": 读取你的回答
+            "write:answers": 修改你的回答
