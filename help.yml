@@ -302,6 +302,8 @@ paths:
       tags:
         - 搜索
       summary: 最热搜索节点信息
+      parameters:
+        - $ref: "#/components/parameters/Limit"
       responses:
         "200":
           description: 成功获取
@@ -513,6 +515,12 @@ components:
       schema:
         type: integer
         format: int64
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
   responses:
     404NotFound:
       description: Not Found
