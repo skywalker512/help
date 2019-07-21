@@ -451,6 +451,12 @@ components:
           type: integer
         opposeNum:
           type: integer
+        isApproval:
+          type: boolean
+          description: 当前登录用户是否赞同
+        isOppose:
+          type: boolean
+          description: 当前登录用户是否反对
         createdAt:
           type: string
           format: date-time
