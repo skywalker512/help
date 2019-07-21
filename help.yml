@@ -363,6 +363,52 @@ paths:
                   $ref: "#/components/schemas/Question"
               example:
                 - $ref: "#/components/examples/QuestionWithOutAnswer"
+      security:
+        - redRockAuth:
+            - "read:questions"
+  "/user/answers":
+    get:
+      tags: 
+        - 用户
+      summary: 获取当前用户的回答
+      parameters:
+        - $ref: "#/components/parameters/Status"
+        - $ref: "#/components/parameters/SortBy"
+        - $ref: "#/components/parameters/Order"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PrePage"
+      responses:
+        "200":
+          description: 成功获取 （这里需要返回回答的所在的问题）
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Answer'
+                example: 
+                  id: 0
+                  content: string
+                  photoUrls:
+                    - string
+                  author:
+                    id: 0
+                    stuNum: 0
+                    gender: 男
+                    avatar: string
+                    role: 新生
+                    createdAt: '2019-07-21T06:11:52.733Z'
+                    updatedAt: '2019-07-21T06:11:52.733Z'
+                  approvalNum: 0
+                  opposeNum: 0
+                  question:
+                    id: 0
+                    content: string
+                  createdAt: '2019-07-21T06:11:52.733Z'
+                  updatedAt: '2019-07-21T06:11:52.733Z'
+      security:
+        - redRockAuth:
+            - "read:answer"
 components:
   schemas:
     Answer:
@@ -560,6 +606,16 @@ components:
       description: 限制返回数量 默认 10
       schema:
         type: integer
+    Status:
+      name: status
+      in: query
+      required: false
+      description: 反对或者赞同 (默认不写返回全部)
+      schema:
+        type: string
+        enum:
+          - approval
+          - oppose
   responses:
     404NotFound:
       description: Not Found
