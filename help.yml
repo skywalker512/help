@@ -169,30 +169,52 @@ paths:
         - redRockAuth:
             - "write:questions"
             - "read:questions"
-  "/questions/image":
+  "/image":
     post:
       tags:
         - 图片
-      summary: 上传一个图片
+      summary: 上传一/多个图片
       requestBody:
         description: base64 编码图片
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                base64:
-                  type: string
-            example:
-              base64: string
+              type: array
+              items:
+                properties:
+                  base64:
+                    type: string
         required: true
       responses:
-        "200":
-          description: 成功信息
+        "201":
+          description: 创建成功
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/Image'
+  "/image/delete":
+    post:
+      tags:
+        - 图片
+      summary: 删除一/多个图片
+      requestBody:
+        description: 图片 id
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                properties:
+                  id:
+                    type: integer
+        required: true
+      responses:
+        401:
+          $ref: "#/components/responses/401Unauthorized"
+        403:
+          $ref: "#/components/responses/403Forbidden"
+        204:
+          $ref: "#/components/responses/204NoContent"
   "/questions/{questionId}/answer":
     post:
       tags:
@@ -566,6 +588,13 @@ components:
         type:
           type: string
         message:
+          type: string
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
           type: string
   parameters:
     SortBy:
