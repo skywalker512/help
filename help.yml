@@ -17,6 +17,7 @@ tags:
   - name: 搜索
   - name: 回答
   - name: 标签
+  - name: 图片
 paths:
   "/questions":
     post:
@@ -168,13 +169,11 @@ paths:
         - redRockAuth:
             - "write:questions"
             - "read:questions"
-  "/questions/{questionId}/image":
+  "/questions/image":
     post:
       tags:
-        - 问题
-      summary: 上传一个图片到问题
-      parameters:
-        - $ref: "#/components/parameters/QuestionId"
+        - 图片
+      summary: 上传一个图片
       requestBody:
         description: base64 编码图片
         content:
@@ -194,10 +193,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApiResponse"
-      security:
-        - redRockAuth:
-            - "write:questions"
-            - "read:questions"
   "/questions/{questionId}/answer":
     post:
       tags:
