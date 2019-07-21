@@ -362,6 +362,7 @@ paths:
                     updatedAt: '2019-07-21T06:33:23.243Z'
                     approvalNum: 0
                     opposeNum: 0
+                    questionsNum: 0
   "/user/questions":
     get:
       tags: 
