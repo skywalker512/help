@@ -116,7 +116,7 @@ paths:
           description: 请求成功
           content:
             application/json:
-              schema:
+              schema: 
                 $ref: "#/components/schemas/Question"
         404:
           $ref: "#/components/responses/404NotFound"
@@ -452,6 +452,51 @@ paths:
       security:
         - redRockAuth:
             - "read:answer"
+  "/user/weixin/callback":
+    get:
+      tags:
+        - 用户
+      summary: 微信用户登录(这个放在 redirect 中)
+      parameters:
+        - name: openid
+          in: query
+          required: true
+          description: 微信的 openid (然后再去访问访问获得用户信息)
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功获取
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+              examples:
+                "新生":
+                  value:
+                    id: 0
+                    stuNum: 0
+                    name: string
+                    gender: 男
+                    avatar: string
+                    role: 新生
+                    createdAt: '2019-07-21T06:33:23.243Z'
+                    updatedAt: '2019-07-21T06:33:23.243Z'
+                    questionsNum: 0
+                    answersNum: 0
+                "志愿者":
+                   value:
+                    id: 0
+                    stuNum: 0
+                    name: string
+                    gender: 男
+                    avatar: string
+                    role: 志愿者
+                    createdAt: '2019-07-21T06:33:23.243Z'
+                    updatedAt: '2019-07-21T06:33:23.243Z'
+                    approvalNum: 0
+                    opposeNum: 0
+                    questionsNum: 0
 components:
   schemas:
     Answer:
