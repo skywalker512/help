@@ -32,8 +32,8 @@ paths:
               $ref: "#/components/schemas/Question"
             example:
               content: string
-              photoUrls:
-                - string
+              photo:
+                - id: 0
               tags:
                 - id: 0
         required: true
@@ -230,8 +230,8 @@ paths:
               $ref: "#/components/schemas/Answer"
             example:
               content: string
-              photoUrls:
-                - string
+              photo:
+                - id: 0
       responses:
         400:
           $ref: "#/components/responses/400InvalidRequset"
