@@ -175,16 +175,16 @@ paths:
         - 图片
       summary: 上传一/多个图片
       requestBody:
-        description: base64 编码图片
         content:
-          application/json:
+          multipart/form-data:
             schema:
-              type: array
-              items:
-                properties:
-                  base64:
-                    type: string
-        required: true
+              properties:
+                fileName:
+                  type: string
+                file:
+                  type: string
+                  description: file to upload
+                  format: binary
       responses:
         "201":
           description: 创建成功
